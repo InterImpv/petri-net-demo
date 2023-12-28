@@ -1,0 +1,78 @@
+{
+    "places": [{
+        "name": "cl.OFF",
+        "tokens": 1
+    }, {
+        "name": "cl.IDLE",
+        "tokens": 0
+    }, {
+        "name": "cl.ON",
+        "tokens": 0
+    }, {
+        "name": "cl.EMPTY",
+        "tokens": 1
+    }, {
+        "name": "cl.FULL",
+        "tokens": 0
+    }, {
+        "name": "cl.ENABLED",
+        "tokens": 1
+    }],
+    "transitions": [{
+        "name": "cl.init_standby",
+        "inputs": [{
+            "name": "cl.ENABLED"
+        }, {
+            "name": "cl.OFF"
+        }],
+        "outputs": [{
+            "name": "cl.ENABLED"
+        }, {
+            "name": "cl.IDLE"
+        }]
+    }, {
+        "name": "cl.turn_off",
+        "inputs": [{
+            "name": "cl.IDLE"
+        }],
+        "outputs": [{
+            "name": "cl.OFF"
+        }]
+    }, {
+        "name": "cl.turn_on",
+        "inputs": [{
+            "name": "cl.IDLE"
+        }, {
+            "name": "cl.FULL"
+        }],
+        "outputs": [{
+            "name": "cl.ON"
+        }, {
+            "name": "cl.FULL"
+        }]
+    }, {
+        "name": "cl.to_standby",
+        "inputs": [{
+            "name": "cl.ON"
+        }],
+        "outputs": [{
+            "name": "cl.IDLE"
+        }]
+    }, {
+        "name": "cl.people>0",
+        "inputs": [{
+            "name": "cl.EMPTY"
+        }],
+        "outputs": [{
+            "name": "cl.FULL"
+        }]
+    }, {
+        "name": "cl.people<1",
+        "inputs": [{
+            "name": "cl.FULL"
+        }],
+        "outputs": [{
+            "name": "cl.EMPTY"
+        }]
+    }]
+}

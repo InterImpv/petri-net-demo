@@ -1,0 +1,120 @@
+{
+    "places": [{
+        "name": "fs.OFF",
+        "tokens": 1
+    }, {
+        "name": "fs.ON",
+        "tokens": 0
+    }, {
+        "name": "fs.T_NOM",
+        "tokens": 1
+    }, {
+        "name": "fs.T_RISE",
+        "tokens": 0
+    }, {
+        "name": "fs.ALARM",
+        "tokens": 0
+    }, {
+        "name": "fs.TIMER",
+        "tokens": 0
+    }, {
+        "name": "fs.WATER",
+        "tokens": 0
+    }, {
+        "name": "fs.ENABLED",
+        "tokens": 1
+    }],
+    "transitions": [{
+        "name": "fs.turn_on",
+        "inputs": [{
+            "name": "fs.ENABLED"
+        }, {
+            "name": "fs.OFF"
+        }],
+        "outputs": [{
+            "name": "fs.ENABLED"
+        }, {
+            "name": "fs.ON"
+        }]
+    }, {
+        "name": "fs.turn_off",
+        "inputs": [{
+            "name": "fs.ON"
+        }],
+        "outputs": [{
+            "name": "fs.OFF"
+        }]
+    }, {
+        "name": "fs.t<threshold",
+        "inputs": [{
+            "name": "fs.T_RISE"
+        }],
+        "outputs": [{
+            "name": "fs.T_NOM"
+        }]
+    }, {
+        "name": "fs.t>=threshold",
+        "inputs": [{
+            "name": "fs.T_NOM"
+        }, {
+            "name": "fs.ON"
+        }],
+        "outputs": [{
+            "name": "fs.T_RISE"
+        }, {
+            "name": "fs.ON"
+        }]
+    }, {
+        "name": "fs.dt>=threshold",
+        "inputs": [{
+            "name": "fs.T_RISE"
+        }],
+        "outputs": [{
+            "name": "fs.ALARM"
+        }, {
+            "name": "fs.TIMER"
+        }]
+    }, {
+        "name": "fs.fire_stop",
+        "inputs": [{
+            "name": "fs.ALARM"
+        }, {
+            "name": "fs.TIMER"
+        }],
+        "outputs": [{
+            "name": "fs.T_NOM"
+        }]
+    }, {
+        "name": "fs.smoke_detect",
+        "inputs": [{
+            "name": "fs.ALARM"
+        }],
+        "outputs": [{
+            "name": "fs.WATER"
+        }]
+    }, {
+        "name": "fs.timer_timeout",
+        "inputs": [{
+            "name": "fs.ALARM"
+        }, {
+            "name": "fs.TIMER"
+        }],
+        "outputs": [{
+            "name": "fs.WATER"
+        }]
+    }, {
+        "name": "fs.timer_clear",
+        "inputs": [{
+            "name": "fs.TIMER"
+        }],
+        "outputs": []
+    }, {
+        "name": "fs.fire_done",
+        "inputs": [{
+            "name": "fs.WATER"
+        }],
+        "outputs": [{
+            "name": "fs.T_NOM"
+        }]
+    }]
+}

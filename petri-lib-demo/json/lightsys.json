@@ -1,0 +1,71 @@
+{
+	"places":   [{
+			"name":	"lt.EMPTY",
+			"tokens":	1
+		}, {
+			"name":	"lt.FULL",
+			"tokens":	0
+		}, {
+			"name":	"lt.OFF",
+			"tokens":	1
+		}, {
+			"name":	"lt.ON",
+			"tokens":	0
+		}, {
+			"name":	"lt.ENABLED",
+			"tokens":	1
+		}],
+	"transitions":	[{
+			"name":	"lt.people>0",
+			"inputs":	[{
+					"name":	"lt.EMPTY"
+				}],
+			"outputs":	[{
+					"name":	"lt.FULL"
+				}]
+		}, {
+			"name":	"lt.people<1",
+			"inputs":	[{
+					"name":	"lt.FULL"
+				}],
+			"outputs":	[{
+					"name":	"lt.EMPTY"
+				}]
+		}, {
+			"name":	"lt.auto_off",
+			"inputs":	[{
+					"name":	"lt.ON"
+				}, {
+					"name":	"lt.EMPTY"
+				}],
+			"outputs":	[{
+					"name":	"lt.OFF"
+				}, {
+					"name":	"lt.EMPTY"
+				}]
+		}, {
+			"name":	"lt.turn_off",
+			"inputs":	[{
+					"name":	"lt.ON"
+				}],
+			"outputs":	[{
+					"name":	"lt.OFF"
+				}]
+		}, {
+			"name":	"lt.turn_on",
+			"inputs":	[{
+					"name":	"lt.OFF"
+				}, {
+					"name":	"lt.FULL"
+				}, {
+					"name":	"lt.ENABLED"
+				}],
+			"outputs":	[{
+					"name":	"lt.ON"
+				}, {
+					"name":	"lt.FULL"
+				}, {
+					"name":	"lt.ENABLED"
+				}]
+		}]
+}
